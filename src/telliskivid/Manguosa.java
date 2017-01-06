@@ -94,11 +94,11 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
     }
 
 
-    public void actionPerformed(ActionEvent e){  
+    public void actionPerformed(ActionEvent e){  // reflection on action
         timer.start();
         if(mangib){
             if(new Rectangle(pallikorX,pallikorY, 20, 20).intersects(new Rectangle(mangijaX, 550, 100, 8))){
-                pallisuundY = -pallisuundY;
+                pallisuundY = -pallisuundY;  //muudab palli suunda kokkupuutumisel rulaga
             }
 
            A: for(int i = 0; i< mas.mas.length; i++) {
@@ -113,19 +113,19 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
                                         Rectangle pallRect = new Rectangle(pallikorX, pallikorY, 20, 20);
                                         Rectangle kuubikuRect = rect;
 
-                                        if (pallRect.intersects(kuubikuRect)){
-                                            mas.setKuubikuArv(0, i, j);
-                                            kokkuKuubikuid--;
-                                            punktid +=5;
+                                        if (pallRect.intersects(kuubikuRect)){  //kui pall põrkab vastu kuubikut, 
+                                            mas.setKuubikuArv(0, i, j);  //lülitame kuubiku välja
+                                            kokkuKuubikuid--;  
+                                            punktid +=5;  //...ning lisame 5 p. iga kuubiku eest
 
                                             if(pallikorX + 19 <= kuubikuRect.x || pallikorX + 1 >= kuubikuRect.x + kuubikuRect.width) {
-                                                pallisuundX = -pallisuundX;
+                                                pallisuundX = -pallisuundX;  //muudab palli suunda kokkupuutumisel kuubikuga
 
                                             } else {
                                                 pallisuundY = -pallisuundY;
 
                                             }
-                                            break A;
+                                            break A;  //tagasi tsükli algusesse
 
 
                         }
@@ -133,9 +133,9 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
                 }
             }
 
-            pallikorX += pallisuundX;
+            pallikorX += pallisuundX; // palli liikumine
             pallikorY += pallisuundY;
-            if(pallikorX < 0){
+            if(pallikorX < 0){  //kokkupõrkes seinaga palli suuna muutmine
                 pallisuundX = -pallisuundX;
             }
             if(pallikorY < 0){
@@ -150,7 +150,7 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
         repaint();
 
     }
-    public void keyTyped(KeyEvent e){}
+    public void keyTyped(KeyEvent e){}  //pole vajalikud, kuid puudumisel tuleb error (KeyListeneri jaoks)
     public void keyReleased(KeyEvent e){}
 
     public void keyPressed(KeyEvent e) {

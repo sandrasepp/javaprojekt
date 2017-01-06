@@ -14,26 +14,26 @@ import javax.swing.Timer;
 /**
  * Created by aleksandra on 02/01/2017.
  */
-public class Manguosa extends JPanel implements KeyListener, ActionListener{
-    private boolean mangib = false;
-    private int punktid = 0;
+public class Manguosa extends JPanel implements KeyListener, ActionListener{   //loome klassi, mida laiendame paneeliks ja implementeerime Listenerid
+    private boolean mangib = false;   //mängu staatus - kas käib?
+    private int punktid = 0;  //punktide arv mängu alguses
 
     private int kokkuKuubikuid = 14;
 
     private Timer timer;
-    private int kiirus =8;
+    private int kiirus =8;  //palli liikumise kiirus
 
     private int mangijaX = 310;  //rula positsioon x teljel
 
-    private int pallikorX =120;
+    private int pallikorX =120;   //palli koordinaadid mängu alguses
     private int pallikorY = 350;
-    private int pallisuundX = -1;
+    private int pallisuundX = -1;   //palli liikumise suund mängu käivitamisel
     private int pallisuundY = -2;
 
     private Kuubikud mas;
 
 
-    public Manguosa(){
+    public Manguosa(){   //main objekti tarbeks väärtused
         mas = new Kuubikud(2, 7);
         addKeyListener(this);
         setFocusable(true);
@@ -42,12 +42,12 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{
         timer.start();
 
     }
-    public void paint(Graphics f) {
+    public void paint(Graphics f) {  //antud meetodis joonistame objekte
 
-        f.setColor(Color.white);       //taust
+        f.setColor(Color.white);       //tausta värv
         f.fillRect(1,1, 692, 592);
 
-        mas.joonista((Graphics2D)f);       //joonistame kuubikud
+        mas.joonista((Graphics2D)f);      //joonistame kuubikud meetodiga teisest klassist
 
         f.setColor(Color.red);         // ääred
         f.fillRect(0, 0, 3, 592);
@@ -64,9 +64,9 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{
         f.setColor(Color.blue);                   // pall
         f.fillOval(pallikorX, pallikorY, 20, 20);
 
-        if(kokkuKuubikuid <= 0) {     //mäng võidetud
-            mangib = false;
-            pallisuundX = 0;
+        if(kokkuKuubikuid <= 0) {     //mäng võidetud, kui kõik kuubikud on tabatud
+            mangib = false;   //eelmise tingimuse täitumisel lõpetatakse mängimise protsess
+            pallisuundX = 0;  // peatame palli liikumist
             pallisuundY = 0;
             f.setColor(Color.GREEN);
             f.setFont(new Font("serif", Font.BOLD, 30));
@@ -78,7 +78,7 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{
         }
 
         if(pallikorY > 570) {      //mäng kaotatud
-            mangib = false;
+            mangib = false; 
             pallisuundX = 0;
             pallisuundY = 0;
             f.setColor(Color.RED);
@@ -89,7 +89,7 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{
             f.drawString("Vajuta Enter uuesti mängimiseks", 230, 350);
         }
 
-        f.dispose();
+        f.dispose(); //ressursi vabastus
 
     }
 

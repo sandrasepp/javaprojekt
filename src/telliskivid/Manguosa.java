@@ -89,12 +89,12 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
             f.drawString("Vajuta Enter uuesti mängimiseks", 230, 350);
         }
 
-        f.dispose(); //ressursi vabastus
+        f.dispose(); //ressursi vabastus mängu lõppus
 
     }
 
 
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e){  
         timer.start();
         if(mangib){
             if(new Rectangle(pallikorX,pallikorY, 20, 20).intersects(new Rectangle(mangijaX, 550, 100, 8))){
@@ -154,11 +154,11 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
     public void keyReleased(KeyEvent e){}
 
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {  //rula liikumine, kontrollib, et ei liiguks ekraanist välja
             if (mangijaX >= 600) {
                 mangijaX = 600;
             } else {
-                liiguParemale();
+                liiguParemale();  //liikumise meetod, vt.all
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -180,7 +180,7 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
                     kokkuKuubikuid = 14;
                     mas = new Kuubikud(2, 7);
 
-                    repaint();
+                    repaint();  // paint meetodi välja kutsumine (tsükli taasalustamine)
                 }
             }
 
@@ -188,7 +188,7 @@ public class Manguosa extends JPanel implements KeyListener, ActionListener{   /
         }
         public void liiguParemale(){
             mangib = true;
-            mangijaX+=20;
+            mangijaX+=20;  //mille võrra muutub esialgne asukoht klahvi vajutamisega
     }
         public void liiguVasakule(){
             mangib = true;

@@ -1,4 +1,4 @@
-c# i200 projekt "Aleksandra mäng"
+# i200 projekt "Aleksandra mäng"
 
 Nimi: Aleksandra Sepp
 
